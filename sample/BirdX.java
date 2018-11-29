@@ -32,8 +32,8 @@ public class BirdX extends Bird
     public String getName()
     {
         if(isLeader)
-            return "IMT2017002(Leader)";
-        return "IMT2017002";
+            return "L";
+        return "002";
     }
 
     public void becomeLeader()
@@ -57,11 +57,12 @@ public class BirdX extends Bird
             setTarget(leaderPosition.getX(), leaderPosition.getY());
         }
         
-        double dx;
-        double dy;
+        double dx = 0.0;
+        double dy = 0.0;
         int xt = this.getTarget().getX();
-        int yt = this.getTarget().getY();        
-        if(xt == x && yt == y)
+        int yt = this.getTarget().getY(); 
+        double distance = Math.sqrt(Math.pow((xt-x),2) + Math.pow((yt-y),2));
+        if(distance < 10.0)
         {
             dx = 0.0;
             dy = 0.0;
@@ -84,15 +85,29 @@ public class BirdX extends Bird
         }
         else
         {
-            double m = (double)(yt - y) / (xt - x);
+            double mx = (double)(yt - y) / (xt - x);
+            double my = (double)(xt - x) / (yt - y);
             if(xt > x)
                 dx = 1.0;
             else
                 dx = -1.0;
 
-            dx *= this.getSpeed();
-            dy = m * (dx);
+            if(mx >= 5 || mx <= -5)
+            {
+                dy *= this.getSpeed();
+                dx = my * dy;
+            }
+            else
+            {
+                dx *= this.getSpeed();
+                dy = mx * dx;
+            }
+
+
         }
+
+
+        
 
         int Dx = x + (int)dx;
         int Dy = y + (int)dy;
@@ -100,8 +115,8 @@ public class BirdX extends Bird
         ArrayList<flockbase.Bird> birds = flock.getBirds();
         for(Bird b : birds)
         {
-            if(b != this)
-            {
+            //if(b != this)
+           // {
                 int xtemp = b.getPos().getX();
                 int ytemp = b.getPos().getY();
                 if(xtemp - Dx > -5.0 && xtemp - Dx < 5.0)
@@ -109,21 +124,21 @@ public class BirdX extends Bird
                     if(ytemp - Dy > -5.0 && ytemp - Dy < 5.0)
                     {
                         if(this.isLeader())
-                            b.setPos(xtemp + 10, ytemp + 10);
+                            b.setPos(xtemp + 20, ytemp + 20);
                         else
                         {
                             dx = 0; dy = 0;
                         }
                     }
                 }
-            }           
+            //}           
         }
 
         this.setPos(x + (int)dx, y + (int)dy);   
     }
 
 
-    private double speed = 10.0;
+    private double speed = 9.0;
     private boolean isLeader;
 
 
