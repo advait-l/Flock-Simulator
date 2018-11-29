@@ -46,6 +46,44 @@ public class BirdX extends Bird
         this.isLeader = false;
     }
 
+    public Position collisionCheck()
+    {
+        int x = 0;
+        int y = 0;
+        Flock flock = this.getFlock();
+
+        for(Bird b:flock.getBirds())
+        {
+            if(b != this)
+            {
+                Position pos = b.getPos();
+                Position tpos = this.getPos();
+                double distance;
+                distance = Math.sqrt(Math.pow(pos.getX() - tpos.getX(),2) + Math.pow(pos.getY() - tpos.getY(),2));
+                if(distance < 15)
+                {
+                    x = x - (pos.getX() - tpos.getX());
+                    y = y - (pos.getY() - tpos.getY());
+                }
+            }
+        }
+
+       /* for(Bird b:flock.getBirds() )
+        {
+            if(b != this)
+            {
+                Position pos = b.getPos();
+                int xtemp = pos.getX();
+                int ytemp = pos.getY();
+                
+            }
+        }*/
+        
+        Position newPos = new Position(0,0);
+        newPos.setPos(x,y);
+        return newPos;        
+    }
+
     protected void updatePos()
     {
         Position currentPosition = this.getPos();
@@ -92,7 +130,7 @@ public class BirdX extends Bird
             else
                 dx = -1.0;
 
-            if(mx >= 5 || mx <= -5)
+            if(mx >= 7 || mx <= -7)
             {
                 dy *= this.getSpeed();
                 dx = my * dy;
@@ -109,8 +147,8 @@ public class BirdX extends Bird
 
         
 
-        int Dx = x + (int)dx;
-        int Dy = y + (int)dy;
+        int Dx = x + (int)dx + collisionCheck().getX();
+        int Dy = y + (int)dy + collisionCheck().getY();
         Flock flock = this.getFlock();
         ArrayList<flockbase.Bird> birds = flock.getBirds();
         for(Bird b : birds)
@@ -134,7 +172,7 @@ public class BirdX extends Bird
             //}           
         }
 
-        this.setPos(x + (int)dx, y + (int)dy);   
+        this.setPos(Dx, Dy);   
     }
 
 

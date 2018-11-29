@@ -9,6 +9,8 @@ abstract public class Bird {
 	public String getName() {
 		return "Bird";
 	}
+	
+
 
 	public void setFlock(Flock f) {
 		flock = f;
@@ -69,4 +71,5 @@ abstract public class Bird {
 	private Position pos;
 	private Flock flock;
 	private Position target;
+	
 }

@@ -16,7 +16,7 @@ import flockbase.Position;
 class SwingDisplay implements FlockDisplay {
 	
 	private Color[] colors = {Color.BLUE, Color.RED, Color.GREEN, Color.YELLOW, 
-								Color.MAGENTA, Color.BLACK };
+								Color.MAGENTA, Color.BLACK, Color.CYAN};
 	private JFrame dframe, gframe;
 	private JPanel canvas = null;
 	
@@ -64,12 +64,12 @@ class SwingDisplay implements FlockDisplay {
 				super.paintComponent(g);
 				int i = 0;
 				for(Bird bird: birds) {
-					g.setColor(colors[i%6]);
+					g.setColor(colors[i%7]);
 					i++;
 					Position loc = bird.getPos();
 					//System.out.println(loc);
 					// next few lines can be replaced with any other interesting way of drawing birds
-					g.drawOval(loc.getX(), loc.getY(), 10, 10);
+					g.fillOval(loc.getX(), loc.getY(), 10, 10);
 					g.drawString(bird.getName(),
 						 loc.getX() , loc.getY() );
 				}
