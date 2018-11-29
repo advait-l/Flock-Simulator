@@ -68,16 +68,21 @@ public class BirdX extends Bird
             }
         }
 
-       /* for(Bird b:flock.getBirds() )
+        for(Bird b:flock.getBirds() )
         {
             if(b != this)
             {
                 Position pos = b.getPos();
-                int xtemp = pos.getX();
-                int ytemp = pos.getY();
+                int x1 = pos.getX();
+                int y1 = pos.getY();
+                if(x1 == x && y1 == y)
+                {
+                    x = x - x1;
+                    y = y - y1;
+                }
                 
             }
-        }*/
+        }
         
         Position newPos = new Position(0,0);
         newPos.setPos(x,y);
