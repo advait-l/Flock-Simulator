@@ -60,7 +60,7 @@ public class BirdX extends Bird
                 Position tpos = this.getPos();
                 double distance;
                 distance = Math.sqrt(Math.pow(pos.getX() - tpos.getX(),2) + Math.pow(pos.getY() - tpos.getY(),2));
-                if(distance < 15)
+                if(distance < 25)
                 {
                     x = x - (pos.getX() - tpos.getX());
                     y = y - (pos.getY() - tpos.getY());
