@@ -2,6 +2,7 @@ package flockbase;
 
 public class Position {
 	// helper class
+        public Position(){}
 		public Position(int px, int py) {
 			x = px;
 			y = py;

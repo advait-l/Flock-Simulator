@@ -8,20 +8,43 @@ import sample.*;
 
 public class TestFlock {
 	public static void main(String[] args) {
-		Flock f = new FlockY(); // where FlockX is a concrete derived class of Flock
+		Flock f = new Flock002(); // where FlockX is a concrete derived class of Flock
 
 		// add a bunch of birds
 
 		// repeat the above for the different derived classes of bird
-		Bird b1 = new BirdX(); // where BirdX is a derived concrete class of Bird
+		Bird b1 = new Bird002(); // where BirdX is a derived concrete class of Bird
 		b1.setPos(10,10);
 		f.addBird(b1);
+
+		Bird b3 = new Bird043(); // where BirdX is a derived concrete class of Bird
+		b3.setPos(200,10);
+		f.addBird(b3);
+
+		Bird b2 = new Bird511(); // where BirdX is a derived concrete class of Bird
+		b2.setPos(400,10);
+		f.addBird(b2);
+
+		//Bird b5 = new Bird2017016(); // where BirdX is a derived concrete class of Bird
+		//b5.setPos(500,10);
+		//f.addBird(b5);
+
+        Bird b6 = new Bird2017028();
+        b6.setPos(100,10);
+        f.addBird(b6);
 		
-		for(int i=0;i<5;i++){
-			Bird b = new BirdX();
-			b.setPos(i*100,  10);
-			f.addBird(b);
-		}
+		Bird b4 = new Bird523(); // where BirdX is a derived concrete class of Bird
+		b4.setPos(300,10);
+		f.addBird(b4);
+
+		//Bird b5 = new Bird2017028(); // where BirdX is a derived concrete class of Bird
+		//b5.setPos(300,10);
+		//f.addBird(b5);
+		//for(int i=0;i<5;i++){
+		//	Bird b = new Bird002();
+		//	b.setPos(i*100,  10);
+		//	f.addBird(b);
+		//}
 	
 		
 		FlockDisplay disp = new SwingDisplay();
